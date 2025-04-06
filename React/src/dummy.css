@@ -1,0 +1,208 @@
+.App {
+    text-align: center;
+    display: flex;
+    background-color: #ffffff;
+    color: white;
+    position: absolute;
+    top: 0; bottom: 0; right: 0; left: 0;
+  }
+  
+  .sidemenu {
+    width: 260px;
+    padding: 10px;
+    background-color: #202123;
+  }
+  
+  .side-menu-button {
+    padding: 12px;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: left;
+    transition: ease 0.25s all;
+  }
+  
+  .side-menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .side-menu-button span {
+    padding-left: 6px;
+    padding-right: 12px;
+  }
+  
+  .chatbox {
+    flex: 1;
+    background-color: #343541;
+    position: relative; /* So children can be absolutely positioned inside */
+    overflow: hidden;   /* Hide any potential overflow beyond .chatbox */
+  }
+  
+  /* Title header styling */
+  .chat-title {
+    font-size: 1.5rem;              /* Adjust font size */
+    font-weight: bold;
+    text-align: center;
+    color: grey;
+    background: rgba(0, 0, 0, 0.5);   /* Semi-transparent background */
+    padding: 10px;
+    margin: 10px 20px 10px;         /* top, sides, bottom margin */
+    border-radius: 10px;
+    font-family: 'Helvetica Neue', sans-serif;
+    position: relative;
+    z-index: 2; /* Ensure it stays on top */
+  }
+  
+  /* Absolutely position the chat log with a top offset for the title */
+  .chat-log {
+    position: absolute;
+    top: 70px;    /* Adjust this value if your title height changes */
+    bottom: 80px; 
+    left: 0; 
+    right: 0;
+    overflow-y: auto;        /* Make it scrollable vertically */
+    z-index: 0;              /* Behind the input bar and title */
+    padding-bottom: 0;       
+    
+    /* Hide scrollbars: Chrome, Safari, Firefox, IE/Edge */
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;     /* Firefox */
+  }
+  .chat-log::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  /* Each chat message container */
+  .chat-message {
+    display: flex;
+    margin: 10px 0;
+  }
+  
+  /* The center container that holds the bubble */
+  .chat-message-center {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  
+  /* USER on the RIGHT */
+  .chat-message.user .chat-message-center {
+    justify-content: flex-end;
+  }
+  
+  /* AI on the LEFT */
+  .chat-message.chatgpt .chat-message-center {
+    justify-content: flex-start;
+  }
+  
+  /* The bubble styling */
+  .chat-message .message {
+    border-radius: 20px;
+    padding: 12px 16px;
+    max-width: 60%;
+    word-wrap: break-word; /* so text doesn't overflow the bubble */
+  }
+  
+  /* Lighter bubble for user */
+  .chat-message.user .message {
+    background-color: #df87c5;
+    color: #333;
+  }
+  
+  /* Darker bubble for AI */
+  .chat-message.chatgpt .message {
+    background-color: #544450;
+    color: #fff;
+  }
+  
+  /* Input area pinned at bottom with higher z-index */
+  .chat-input-holder {
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 2;          /* Above the chat-log */
+    padding: 24px;
+  }
+  
+  .chat-input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #40414f;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    padding: 0 8px; /* horizontal padding inside the bar */
+  }
+  
+  .chat-input-textarea {
+    resize: none;
+    background-color: #40414f;
+    width: 90%;
+    padding: 12px 16px;
+    border-radius: 20px; 
+    color: white;
+    font-size: 1.25em;
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .chat-send-button {
+    background: #fff;       /* White circle */
+    color: #333;            /* Dark icon color */
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;       /* Gap between textarea and button */
+    transition: background-color 0.2s ease;
+  }
+  
+  .chat-send-button:hover {
+    background-color: #eaeaea;
+  }
+  
+  /* Reasoning loader styling */
+  .reasoning-loader {
+    font-size: 1.2rem;    /* Reduced font size */
+    color: #aaa;          /* Base text color */
+    position: relative;
+    display: inline-block; /* Only as wide as the content */
+    overflow: hidden;
+    padding: 4px 8px;     /* Optional: add padding for a nicer look */
+  }
+  
+  /* The shimmer highlight for loader */
+  .reasoning-loader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(255,255,255,0.5) 50%,
+      transparent 100%
+    );
+    animation: shimmer 1.2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      left: -50%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
